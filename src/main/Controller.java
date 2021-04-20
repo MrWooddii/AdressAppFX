@@ -74,7 +74,6 @@ public class Controller {
 
         if(this.usernameTextField.getText().equals("Wooddii") && this.passwordField.getText().equals("123")) {
             this.loginFailedLabel.setVisible(false);
-            System.out.println("success");
         } else {
             this.loginFailedLabel.setVisible(true);
         }
@@ -86,13 +85,12 @@ public class Controller {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("homeScreen.fxml"));
         root = loader.load();
 
-        //instantiate homeScreenController to display given username
+        //instantiate homeScreenController (rn no function, could be used to display username e.g.)
         HomeScreenController homeScreenController = loader.getController();
-        //homeScreenController.displayName(username);
 
         //switch scenes to Home Screen
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();      //event = button click -> Source des Klicks erhalten -> Scene des Buttons erhalten (in Main = "primaryStage.setScene...") -> Window erhalten
-        stage.setTitle("Address app by " + username);
+        stage.setTitle("Address App for " + username);
         scene = new Scene(root);                                                //in die erhaltene Scene die zuvor geladene root einfügen
         stage.setScene(scene);
         stage.show();
