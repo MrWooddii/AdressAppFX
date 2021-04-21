@@ -1,8 +1,12 @@
 package main;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class addPersonController {
 
@@ -25,13 +29,31 @@ public class addPersonController {
     private TextField phoneText;
 
     @FXML
-    private Button addContactbutton;
+    private TextField birthdateText;
+
+    @FXML
+    public Button addContactbutton;
 
     @FXML
     private Button resetButton;
 
+    private Person person;
+
     @FXML
     public void addContact() {
+
+        String firstName = firstNameText.getText();
+        String lastName = lastNameText.getText();
+        String street = streetText.getText();
+        String city = cityText.getText();
+        String postalCode = postalText.getText();
+        String phoneNumber = phoneText.getText();
+        String birthdate = birthdateText.getText();
+
+        this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
+
+        System.out.println("added: " + person.toString());
+
 
     }
 
@@ -42,8 +64,16 @@ public class addPersonController {
         this.streetText.clear();
         this.cityText.clear();
         this.postalText.clear();
+        this.birthdateText.clear();
         this.phoneText.clear();
     }
 
+    public Button getAddContactButton() {
+        return this.addContactbutton;
+    }
+
+    public Person getPerson() {
+        return this.person;
+    }
 
 }

@@ -83,6 +83,11 @@ public class HomeScreenController implements Initializable {
 
         //get the table position of the clicked row and the index
         TablePosition pos = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+
+        if(pos == null) {
+            return;
+        }
+
         int index = pos.getRow();
 
         //change every label to the known data
@@ -109,7 +114,11 @@ public class HomeScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+        addPersonController.getAddContactButton().setOnAction(event -> {
+            addPersonController.addContact();
+        });
 
+        this.personData.add(addPersonController.getPerson());
 
     }
 

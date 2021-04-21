@@ -46,6 +46,8 @@ public class Controller {
         boolean usernameEmpty = this.usernameTextField.getText().isEmpty();
         boolean passwordEmpty = this.passwordField.getText().isEmpty();
 
+        //TODO:
+        /*
         if(usernameEmpty || passwordEmpty) {
 
             this.loginFailedLabel.setVisible(false);
@@ -76,7 +78,7 @@ public class Controller {
             this.loginFailedLabel.setVisible(false);
         } else {
             this.loginFailedLabel.setVisible(true);
-        }
+        }*/
 
         //get username
         String username = usernameTextField.getText();
