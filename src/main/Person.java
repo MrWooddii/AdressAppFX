@@ -10,6 +10,10 @@ public class Person {
     private String birthdate;
     private String phoneNumber;
 
+    public Person() {
+        //default
+    }
+
     public Person(String firstName, String lastName) {
         this(firstName, lastName, "", "", "", "", "");
     }

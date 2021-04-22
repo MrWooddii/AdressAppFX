@@ -42,18 +42,17 @@ public class addPersonController {
     @FXML
     public void addContact() {
 
-        String firstName = firstNameText.getText();
-        String lastName = lastNameText.getText();
-        String street = streetText.getText();
-        String city = cityText.getText();
-        String postalCode = postalText.getText();
-        String phoneNumber = phoneText.getText();
-        String birthdate = birthdateText.getText();
+        this.addContactbutton.setOnAction(event -> {
+            String firstName = firstNameText.getText();
+            String lastName = lastNameText.getText();
+            String street = streetText.getText();
+            String city = cityText.getText();
+            String postalCode = postalText.getText();
+            String phoneNumber = phoneText.getText();
+            String birthdate = birthdateText.getText();
 
-        this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
-
-        System.out.println("added: " + person.toString());
-
+            this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
+        });
 
     }
 

@@ -75,33 +75,32 @@ public class HomeScreenController implements Initializable {
 
         firstName.setCellValueFactory(new PropertyValueFactory<Person, String> ("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<Person, String> ("lastName"));
-        table.setItems(personData);
+        table.setItems(this.personData);
     }
 
     @FXML
     public void clickName(MouseEvent event) {
 
-        //get the table position of the clicked row and the index
-        TablePosition pos = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+        try {
+            //get the table position of the clicked row and the index
+            TablePosition pos = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+            int index = pos.getRow();
 
-        if(pos == null) {
-            return;
+            //change every label to the known data
+            this.firstNameLabel.setText(personData.get(index).getFirstName());
+            this.lastNameLabel.setText(personData.get(index).getLastName());
+            this.streetLabel.setText(personData.get(index).getStreet());
+            this.cityLabel.setText(personData.get(index).getCity());
+            this.postalLabel.setText(personData.get(index).getPostalCode());
+            this.birthdayLabel.setText(personData.get(index).getBirthdate());
+            this.phoneNumberLabel.setText(personData.get(index).getPhoneNumber());
+
+            //String selected = firstName.getCellObservableValue(index).getValue();
+            //String selected = table.getItems().get(index).;
+            // test : System.out.println(selected);
+        } catch (Exception e) {
+            System.out.println("Empty column selected");
         }
-
-        int index = pos.getRow();
-
-        //change every label to the known data
-        this.firstNameLabel.setText(personData.get(index).getFirstName());
-        this.lastNameLabel.setText(personData.get(index).getLastName());
-        this.streetLabel.setText(personData.get(index).getStreet());
-        this.cityLabel.setText(personData.get(index).getCity());
-        this.postalLabel.setText(personData.get(index).getPostalCode());
-        this.birthdayLabel.setText(personData.get(index).getBirthdate());
-        this.phoneNumberLabel.setText(personData.get(index).getPhoneNumber());
-
-        //String selected = firstName.getCellObservableValue(index).getValue();
-        //String selected = table.getItems().get(index).;
-        // test : System.out.println(selected);
     }
 
     @FXML
@@ -114,11 +113,13 @@ public class HomeScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-        addPersonController.getAddContactButton().setOnAction(event -> {
-            addPersonController.addContact();
-        });
 
-        this.personData.add(addPersonController.getPerson());
+        if(addPersonController.getPerson() != null) {
+            addPersonController.addContact();
+            this.personData.add(addPersonController.getPerson());
+            this.table.setItems(this.personData);
+            this.table.refresh();
+        }
 
     }
 
