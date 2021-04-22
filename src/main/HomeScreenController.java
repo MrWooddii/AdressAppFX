@@ -81,9 +81,8 @@ public class HomeScreenController implements Initializable {
     public void clickName(MouseEvent event) {
 
         try {
-            //get the table position of the clicked row and the index
-            TablePosition pos = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
-            int index = pos.getRow();
+            //get the index of the selected Person in the table view
+            int index = getTablePosition();
 
             //change every label to the known data
             this.firstNameLabel.setText(personData.get(index).getFirstName());
@@ -120,5 +119,24 @@ public class HomeScreenController implements Initializable {
             this.personData.add(addPersonController.getPerson());
             this.table.refresh();
         });
+    }
+
+    @FXML
+    public void delete() {
+        try {
+            //get the index of the selected Person in the table view
+            int index = getTablePosition();
+
+            this.personData.remove(index);
+        } catch (Exception e) {
+            System.out.println("No person selected");
+        }
+    }
+
+    //get the index of the selected Person in the table view
+    private Integer getTablePosition() {
+        TablePosition pos = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+        int index = pos.getRow();
+        return index;
     }
 }

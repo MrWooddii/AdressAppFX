@@ -60,10 +60,6 @@ public class AddPersonController {
             this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
             this.addContactbutton.getScene().getWindow().hide();
         }
-
-
-
-
     }
 
     @FXML
