@@ -58,7 +58,10 @@ public class AddPersonController {
 
         if(!firstName.isEmpty() && !lastName.isEmpty()) {
             this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
+            this.addContactbutton.getScene().getWindow().hide();
         }
+
+
 
 
     }
