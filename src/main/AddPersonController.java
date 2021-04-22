@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-public class addPersonController {
+public class AddPersonController {
 
     @FXML
     private TextField firstNameText;
@@ -39,20 +39,27 @@ public class addPersonController {
 
     private Person person;
 
+
+    public AddPersonController() {
+        System.out.println("created");
+    }
+
+
     @FXML
     public void addContact() {
 
-        this.addContactbutton.setOnAction(event -> {
-            String firstName = firstNameText.getText();
-            String lastName = lastNameText.getText();
-            String street = streetText.getText();
-            String city = cityText.getText();
-            String postalCode = postalText.getText();
-            String phoneNumber = phoneText.getText();
-            String birthdate = birthdateText.getText();
+        String firstName = firstNameText.getText();
+        String lastName = lastNameText.getText();
+        String street = streetText.getText();
+        String city = cityText.getText();
+        String postalCode = postalText.getText();
+        String phoneNumber = phoneText.getText();
+        String birthdate = birthdateText.getText();
 
+        if(!firstName.isEmpty() && !lastName.isEmpty()) {
             this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
-        });
+        }
+
 
     }
 
@@ -67,6 +74,7 @@ public class addPersonController {
         this.phoneText.clear();
     }
 
+    @FXML
     public Button getAddContactButton() {
         return this.addContactbutton;
     }

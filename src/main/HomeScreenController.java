@@ -2,11 +2,9 @@ package main;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -66,6 +64,7 @@ public class HomeScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Test data to populate the table view
         personData.add(new Person("Steve", "Holzapfel", "Unterdorfstraße 2", "Meckenheim", "53340", "24.03.1995", "12356766"));
         personData.add(new Person("Kerstin", "Holzapfel", "Unterdorfstraße 2", "Meckenheim", "53340", "18.07.1956", "4598455"));
         personData.add(new Person("Helmut", "Holzapfel", "Unterdorfstraße 3", "Meckenheim", "53340", "20.08.1965", "459856"));
@@ -95,9 +94,6 @@ public class HomeScreenController implements Initializable {
             this.birthdayLabel.setText(personData.get(index).getBirthdate());
             this.phoneNumberLabel.setText(personData.get(index).getPhoneNumber());
 
-            //String selected = firstName.getCellObservableValue(index).getValue();
-            //String selected = table.getItems().get(index).;
-            // test : System.out.println(selected);
         } catch (Exception e) {
             System.out.println("Empty column selected");
         }
@@ -105,22 +101,24 @@ public class HomeScreenController implements Initializable {
 
     @FXML
     public void addPerson() throws IOException {
-        addPersonController addPersonController = new addPersonController();
 
-        Parent root = FXMLLoader.load(getClass().getResource("addPerson.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("addPerson.fxml"));
+        Parent root = loader.load();
+
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
 
+        AddPersonController addPersonController = loader.getController();
 
-        if(addPersonController.getPerson() != null) {
+        addPersonController.getAddContactButton().setOnAction(actionEvent -> {
             addPersonController.addContact();
+            if(addPersonController.getPerson() == null) {
+                return;
+            }
             this.personData.add(addPersonController.getPerson());
-            this.table.setItems(this.personData);
             this.table.refresh();
-        }
-
+        });
     }
-
 }
