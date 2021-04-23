@@ -4,9 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+
+import java.time.format.DateTimeFormatter;
 
 public class AddPersonController {
 
@@ -29,7 +32,7 @@ public class AddPersonController {
     private TextField phoneText;
 
     @FXML
-    private TextField birthdateText;
+    private DatePicker birthdateText;
 
     @FXML
     public Button addContactbutton;
@@ -49,7 +52,7 @@ public class AddPersonController {
         String city = cityText.getText();
         String postalCode = postalText.getText();
         String phoneNumber = phoneText.getText();
-        String birthdate = birthdateText.getText();
+        String birthdate = String.valueOf(birthdateText.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 
         if(!firstName.isEmpty() && !lastName.isEmpty()) {
             this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
@@ -64,7 +67,7 @@ public class AddPersonController {
         this.streetText.clear();
         this.cityText.clear();
         this.postalText.clear();
-        this.birthdateText.clear();
+        this.birthdateText.getEditor().clear();
         this.phoneText.clear();
     }
 

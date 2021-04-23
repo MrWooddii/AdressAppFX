@@ -49,21 +49,21 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Label layoutX="549.0" layoutY="192.0" text="First Name" />
+      <Label layoutX="549.0" layoutY="192.0" text="First Name" AnchorPane.leftAnchor="550.0" />
       <Label fx:id="firstNameLabel" layoutX="756.0" layoutY="192.0" />
-      <Label layoutX="549.0" layoutY="226.0" text="Last Name" />
+      <Label layoutX="549.0" layoutY="226.0" text="Last Name" AnchorPane.leftAnchor="550.0" />
       <Label fx:id="lastNameLabel" layoutX="756.0" layoutY="226.0" />
-      <Label layoutX="550.0" layoutY="261.0" text="Street" />
-      <Label fx:id="streetLabel" layoutX="756.0" layoutY="261.0" />
-      <Label layoutX="550.0" layoutY="294.0" text="City" />
+      <Label layoutX="550.0" layoutY="260.0" text="Street" AnchorPane.leftAnchor="550.0" />
+      <Label fx:id="streetLabel" layoutX="756.0" layoutY="260.0" />
+      <Label layoutX="550.0" layoutY="294.0" text="City" AnchorPane.leftAnchor="550.0" />
       <Label fx:id="cityLabel" layoutX="756.0" layoutY="294.0" />
-      <Label layoutX="550.0" layoutY="325.0" text="Postal Code" />
-      <Label fx:id="postalLabel" layoutX="756.0" layoutY="325.0" />
-      <Label layoutX="550.0" layoutY="352.0" text="Birthday" />
-      <Label fx:id="birthdayLabel" layoutX="756.0" layoutY="352.0" />
-      <Label layoutX="550.0" layoutY="383.0" text="Phone number" />
-      <Label fx:id="phoneNumberLabel" layoutX="756.0" layoutY="383.0" />
-      <Button fx:id="deleteButton" layoutX="1014.0" layoutY="681.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <Label layoutX="550.0" layoutY="328.0" text="Postal Code" AnchorPane.leftAnchor="550.0" />
+      <Label fx:id="postalLabel" layoutX="756.0" layoutY="328.0" />
+      <Label layoutX="550.0" layoutY="398.0" text="Birthday" AnchorPane.leftAnchor="550.0" />
+      <Label fx:id="birthdayLabel" layoutX="756.0" layoutY="398.0" />
+      <Label layoutX="550.0" layoutY="364.0" text="Phone number" AnchorPane.leftAnchor="550.0" />
+      <Label fx:id="phoneNumberLabel" layoutX="756.0" layoutY="364.0" />
+      <Button fx:id="deleteButton" layoutX="1014.0" layoutY="681.0" mnemonicParsing="false" onAction="#confirmDelete" text="Delete" />
       <Button fx:id="addButton" layoutX="929.0" layoutY="681.0" mnemonicParsing="false" onAction="#addPerson" text="Add" />
       <Button fx:id="editButton" layoutX="973.0" layoutY="681.0" mnemonicParsing="false" onAction="#editPerson" text="Edit" />
    </children>

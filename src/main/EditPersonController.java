@@ -2,7 +2,11 @@ package main;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EditPersonController {
 
@@ -25,7 +29,7 @@ public class EditPersonController {
     private TextField phoneText;
 
     @FXML
-    private TextField birthdateText;
+    private DatePicker birthdateText;
 
     @FXML
     private Button editContactButton;
@@ -42,7 +46,8 @@ public class EditPersonController {
         cityText.setText(person.getCity());
         postalText.setText(person.getPostalCode());
         phoneText.setText(person.getPhoneNumber());
-        birthdateText.setText(person.getBirthdate());
+
+        birthdateText.getEditor().setText(person.getBirthdate());
     }
 
     @FXML
@@ -54,7 +59,13 @@ public class EditPersonController {
         person.setCity(cityText.getText());
         person.setPostalCode(postalText.getText());
         person.setPhoneNumber(phoneText.getText());
-        person.setBirthdate(birthdateText.getText());
+
+        if(birthdateText.getValue() != null) {
+            person.setBirthdate(String.valueOf(birthdateText.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
+        } else {
+            person.setBirthdate(birthdateText.getEditor().getText());
+        }
+
 
         //close edit window
         this.editContactButton.getScene().getWindow().hide();
@@ -68,7 +79,7 @@ public class EditPersonController {
         this.streetText.clear();
         this.cityText.clear();
         this.postalText.clear();
-        this.birthdateText.clear();
+        this.birthdateText.setValue(null);
         this.phoneText.clear();
     }
 
@@ -124,12 +135,12 @@ public class EditPersonController {
         this.phoneText.setText(phoneNumber);
     }
 
-    public String getBirthdate() {
-        return birthdateText.getText();
+    public LocalDate getBirthdate() {
+        return birthdateText.getValue();
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdateText.setText(birthdate);
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdateText.setValue(birthdate);
     }
 
 }

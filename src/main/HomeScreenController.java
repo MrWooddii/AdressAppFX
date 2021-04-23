@@ -1,5 +1,6 @@
 package main;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,6 +58,12 @@ public class HomeScreenController implements Initializable {
     @FXML
     private Button addButton;
 
+    @FXML
+    private Button confirmButton;
+
+    @FXML
+    private Button rejectButton;
+
 
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
@@ -95,40 +102,75 @@ public class HomeScreenController implements Initializable {
             if(addPersonController.getPerson() == null) {
                 return;
             }
+
+            //add the new Person to the personData - List
             this.personData.add(addPersonController.getPerson());
             this.table.refresh();
         });
     }
 
     @FXML
-    public void delete() {
-        try {
-            //get the index of the selected Person in the table view
-            int index = getTablePosition();
+    public void confirmDelete() throws IOException{
 
-            this.personData.remove(index);
+        try {
+            int index = getTablePosition();
         } catch (Exception e) {
             System.out.println("No person selected");
+            return;
         }
-    }
 
-    @FXML
-    public void editPerson() throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("editPerson.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteConfirmation.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.show();
 
-        EditPersonController editPersonController = loader.getController();
+        DeleteConfirmationController deleteConfirmationController = loader.getController();
+
+
+        deleteConfirmationController.getConfirmationButton().setOnAction(actionEvent -> {
+            deleteConfirmationController.setConfirm(true);
+            delete();
+            scene.getWindow().hide();
+            System.out.println("true");
+        });
+
+        deleteConfirmationController.getRejectButton().setOnAction(actionEvent -> {
+            deleteConfirmationController.setConfirm(false);
+            scene.getWindow().hide();
+            System.out.println("false");
+        });
+
+    }
+
+    @FXML
+    public void delete() {
+        int index = getTablePosition();
+
+        this.personData.remove(index);
+        setPersonalDetails();
+    }
+
+    @FXML
+    public void editPerson() throws IOException {
 
         try {
             int index = getTablePosition();
             Person person = this.personData.get(index);
+
+            //only show stage if a person exists
             if(person != null) {
-                //only show stage if a person exists
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("editPerson.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+
+                EditPersonController editPersonController = loader.getController();
+
                 stage.show();
 
                 //TextFields are getting filled with the current data
@@ -148,7 +190,8 @@ public class HomeScreenController implements Initializable {
         }
     }
 
-    private void setPersonalDetails() {
+    @FXML
+    public void setPersonalDetails() {
 
         try {
             //get the index of the selected Person in the table view
