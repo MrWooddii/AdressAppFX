@@ -78,7 +78,7 @@ public class HomeScreenController implements Initializable {
     }
 
     @FXML
-    public void clickName(MouseEvent event) {
+    public void setPersonalDetails() {
 
         try {
             //get the index of the selected Person in the table view
@@ -130,6 +130,40 @@ public class HomeScreenController implements Initializable {
             this.personData.remove(index);
         } catch (Exception e) {
             System.out.println("No person selected");
+        }
+    }
+
+    @FXML
+    public void editPerson() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("editPerson.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+
+        EditPersonController editPersonController = loader.getController();
+
+        try {
+            int index = getTablePosition();
+            Person person = this.personData.get(index);
+            if(person != null) {
+                //only show stage if a person exists
+                stage.show();
+
+                //TextFields are getting filled with the current data
+                editPersonController.setTextField(person);
+                editPersonController.getEditContactButton().setOnAction(actionEvent -> {
+                    editPersonController.editContact(person);
+                    this.personData.set(index, person);
+                    this.table.refresh();
+                    setPersonalDetails();
+                });
+
+            }
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            System.out.println("Empty row selected");
         }
     }
 
