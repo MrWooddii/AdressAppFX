@@ -40,11 +40,6 @@ public class AddPersonController {
     private Person person;
 
 
-    public AddPersonController() {
-        System.out.println("created");
-    }
-
-
     @FXML
     public void addContact() {
 

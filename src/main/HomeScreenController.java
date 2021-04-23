@@ -78,27 +78,6 @@ public class HomeScreenController implements Initializable {
     }
 
     @FXML
-    public void setPersonalDetails() {
-
-        try {
-            //get the index of the selected Person in the table view
-            int index = getTablePosition();
-
-            //change every label to the known data
-            this.firstNameLabel.setText(personData.get(index).getFirstName());
-            this.lastNameLabel.setText(personData.get(index).getLastName());
-            this.streetLabel.setText(personData.get(index).getStreet());
-            this.cityLabel.setText(personData.get(index).getCity());
-            this.postalLabel.setText(personData.get(index).getPostalCode());
-            this.birthdayLabel.setText(personData.get(index).getBirthdate());
-            this.phoneNumberLabel.setText(personData.get(index).getPhoneNumber());
-
-        } catch (Exception e) {
-            System.out.println("Empty column selected");
-        }
-    }
-
-    @FXML
     public void addPerson() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addPerson.fxml"));
@@ -154,6 +133,8 @@ public class HomeScreenController implements Initializable {
 
                 //TextFields are getting filled with the current data
                 editPersonController.setTextField(person);
+
+                //change contact details with click on "Edit Contact"
                 editPersonController.getEditContactButton().setOnAction(actionEvent -> {
                     editPersonController.editContact(person);
                     this.personData.set(index, person);
@@ -164,6 +145,26 @@ public class HomeScreenController implements Initializable {
             }
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             System.out.println("Empty row selected");
+        }
+    }
+
+    private void setPersonalDetails() {
+
+        try {
+            //get the index of the selected Person in the table view
+            int index = getTablePosition();
+
+            //change every label to the known data
+            this.firstNameLabel.setText(personData.get(index).getFirstName());
+            this.lastNameLabel.setText(personData.get(index).getLastName());
+            this.streetLabel.setText(personData.get(index).getStreet());
+            this.cityLabel.setText(personData.get(index).getCity());
+            this.postalLabel.setText(personData.get(index).getPostalCode());
+            this.birthdayLabel.setText(personData.get(index).getBirthdate());
+            this.phoneNumberLabel.setText(personData.get(index).getPhoneNumber());
+
+        } catch (Exception e) {
+            System.out.println("Empty column selected");
         }
     }
 

@@ -47,7 +47,6 @@ public class EditPersonController {
 
     @FXML
     public void editContact(Person person) {
-
         //save changes to the person when "Edit Contact" is clicked
         person.setFirstName(firstNameText.getText());
         person.setLastName(lastNameText.getText());
@@ -57,11 +56,13 @@ public class EditPersonController {
         person.setPhoneNumber(phoneText.getText());
         person.setBirthdate(birthdateText.getText());
 
+        //close edit window
         this.editContactButton.getScene().getWindow().hide();
     }
 
     @FXML
     public void reset() {
+        //empty all TextFields
         this.firstNameText.clear();
         this.lastNameText.clear();
         this.streetText.clear();
