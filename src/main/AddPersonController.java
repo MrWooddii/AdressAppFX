@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -40,13 +41,16 @@ public class AddPersonController {
     @FXML
     private Button resetButton;
 
+    @FXML
+    private Label errorLabel;
+
     private Person person;
 
 
     //gitTest
 
     @FXML
-    public void addContact() {
+    public void addContact() throws NullPointerException{
 
         String firstName = firstNameText.getText();
         String lastName = lastNameText.getText();
@@ -54,12 +58,16 @@ public class AddPersonController {
         String city = cityText.getText();
         String postalCode = postalText.getText();
         String phoneNumber = phoneText.getText();
+        if(birthdateText.getValue() == null) return;
         String birthdate = String.valueOf(birthdateText.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 
         if(!firstName.isEmpty() && !lastName.isEmpty()) {
             this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
             this.addContactbutton.getScene().getWindow().hide();
         }
+
+        this.errorLabel.setVisible(true);
+
     }
 
     @FXML

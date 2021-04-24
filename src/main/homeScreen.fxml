@@ -38,7 +38,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </MenuBar>
-      <TableView fx:id="table" layoutY="45.0" onMouseClicked="#setPersonalDetails" prefHeight="200.0" prefWidth="540.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="45.0">
+      <TableView fx:id="table" layoutY="45.0" onMouseClicked="#setPersonDetails" prefHeight="200.0" prefWidth="540.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="540.0" AnchorPane.topAnchor="45.0">
         <columns>
           <TableColumn fx:id="firstName" editable="false" prefWidth="268.0" text="First Name" />
           <TableColumn fx:id="lastName" editable="false" minWidth="0.0" prefWidth="271.0" text="Last Name" />

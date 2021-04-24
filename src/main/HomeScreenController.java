@@ -1,6 +1,5 @@
 package main;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -57,13 +55,6 @@ public class HomeScreenController implements Initializable {
 
     @FXML
     private Button addButton;
-
-    @FXML
-    private Button confirmButton;
-
-    @FXML
-    private Button rejectButton;
-
 
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
@@ -131,16 +122,12 @@ public class HomeScreenController implements Initializable {
 
 
         deleteConfirmationController.getConfirmationButton().setOnAction(actionEvent -> {
-            deleteConfirmationController.setConfirm(true);
             delete();
             scene.getWindow().hide();
-            System.out.println("true");
         });
 
         deleteConfirmationController.getRejectButton().setOnAction(actionEvent -> {
-            deleteConfirmationController.setConfirm(false);
             scene.getWindow().hide();
-            System.out.println("false");
         });
 
     }
@@ -150,7 +137,7 @@ public class HomeScreenController implements Initializable {
         int index = getTablePosition();
 
         this.personData.remove(index);
-        setPersonalDetails();
+        setPersonDetails();
     }
 
     @FXML
@@ -181,7 +168,7 @@ public class HomeScreenController implements Initializable {
                     editPersonController.editContact(person);
                     this.personData.set(index, person);
                     this.table.refresh();
-                    setPersonalDetails();
+                    setPersonDetails();
                 });
 
             }
@@ -191,7 +178,7 @@ public class HomeScreenController implements Initializable {
     }
 
     @FXML
-    public void setPersonalDetails() {
+    public void setPersonDetails() {
 
         try {
             //get the index of the selected Person in the table view

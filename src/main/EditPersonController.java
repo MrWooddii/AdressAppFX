@@ -3,6 +3,7 @@ package main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
@@ -38,6 +39,9 @@ public class EditPersonController {
     private Button resetButton;
 
     @FXML
+    private Label errorLabel;
+
+    @FXML
     public void setTextField(Person person) {
         //set Textfields to the current data
         firstNameText.setText(person.getFirstName());
@@ -53,6 +57,11 @@ public class EditPersonController {
     @FXML
     public void editContact(Person person) {
         //save changes to the person when "Edit Contact" is clicked
+        if(firstNameText.getText().isEmpty() || lastNameText.getText().isEmpty()) {
+            this.errorLabel.setVisible(true);
+            return;
+        }
+
         person.setFirstName(firstNameText.getText());
         person.setLastName(lastNameText.getText());
         person.setStreet(streetText.getText());

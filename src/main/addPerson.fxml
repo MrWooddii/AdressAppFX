@@ -4,6 +4,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +21,10 @@
       <Label layoutX="20.0" layoutY="226.0" text="Phone Number" AnchorPane.leftAnchor="20.0" />
       <Label layoutX="15.0" layoutY="161.0" text="City" AnchorPane.leftAnchor="20.0" />
       <Label layoutX="20.0" layoutY="192.0" text="Postal Code" AnchorPane.leftAnchor="20.0" />
-      <TextField fx:id="firstNameText" layoutX="191.0" layoutY="55.0" prefHeight="25.0" prefWidth="219.0" promptText="First Name" />
+      <TextField fx:id="firstNameText" layoutX="191.0" layoutY="55.0" prefHeight="25.0" prefWidth="219.0" promptText="First Name">
+         <tooltip>
+            <Tooltip text="First Name can't be empty!" />
+         </tooltip></TextField>
       <TextField fx:id="lastNameText" layoutX="191.0" layoutY="88.0" prefHeight="25.0" prefWidth="219.0" promptText="Last Name" />
       <TextField fx:id="streetText" layoutX="191.0" layoutY="123.0" prefHeight="25.0" prefWidth="219.0" promptText="Street" />
       <TextField fx:id="cityText" layoutX="191.0" layoutY="157.0" prefHeight="25.0" prefWidth="219.0" promptText="City" />
@@ -30,5 +34,6 @@
       <Button fx:id="resetButton" layoutX="291.0" layoutY="306.0" mnemonicParsing="false" onAction="#reset" text="Zurücksetzen" />
       <Label layoutX="20.0" layoutY="260.0" text="Birthdate" AnchorPane.leftAnchor="20.0" />
       <DatePicker fx:id="birthdateText" layoutX="191.0" layoutY="256.0" prefHeight="25.0" prefWidth="219.0" promptText="Birthdate" />
+      <Label fx:id="errorLabel" layoutX="191.0" layoutY="353.0" prefHeight="17.0" prefWidth="219.0" text="Firstname and Lastname can't be empty!" textFill="RED" visible="false" />
    </children>
 </AnchorPane>
