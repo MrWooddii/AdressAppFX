@@ -47,7 +47,6 @@ public class AddPersonController {
     private Person person;
 
 
-    //gitTest
 
     @FXML
     public void addContact() throws NullPointerException{
@@ -58,11 +57,13 @@ public class AddPersonController {
         String city = cityText.getText();
         String postalCode = postalText.getText();
         String phoneNumber = phoneText.getText();
-        if(birthdateText.getValue() == null) return;
-        String birthdate = String.valueOf(birthdateText.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 
         if(!firstName.isEmpty() && !lastName.isEmpty()) {
-            this.person = new Person(firstName, lastName, street, city, postalCode, birthdate, phoneNumber);
+            this.person = new Person(firstName, lastName, street, city, postalCode, phoneNumber);
+            if(birthdateText.getValue() != null) {
+                String birthdate = String.valueOf(birthdateText.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+                this.person.setBirthdate(birthdate);
+            }
             this.addContactbutton.getScene().getWindow().hide();
         }
 

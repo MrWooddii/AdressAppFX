@@ -63,12 +63,8 @@ public class HomeScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Test data to populate the table view
-        personData.add(new Person("Steve", "Holzapfel", "Unterdorfstraße 2", "Meckenheim", "53340", "24.03.1995", "12356766"));
-        personData.add(new Person("Kerstin", "Holzapfel", "Unterdorfstraße 2", "Meckenheim", "53340", "18.07.1956", "4598455"));
-        personData.add(new Person("Helmut", "Holzapfel", "Unterdorfstraße 3", "Meckenheim", "53340", "20.08.1965", "459856"));
-        personData.add(new Person("Rebecca", "Frings", "Am Zehnthof 38", "Koblenz", "34567", "21.10.1975", "123688"));
-        personData.add(new Person("Hansi", "Flick", "Am Zehnthof 38", "Frankfurt", "1123123", "05.05.1945", "569568"));
-        personData.add(new Person("Knorkator", "Hans"));
+        personData.add(new Person("Max", "Mustermann", "Musterstraße 1", "Musterstadt", "01.01.2000", "12345", "123456678"));
+        personData.add(new Person("Erika", "Mustermann"));
 
         firstName.setCellValueFactory(new PropertyValueFactory<Person, String> ("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<Person, String> ("lastName"));

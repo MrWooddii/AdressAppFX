@@ -18,17 +18,21 @@ public class Person {
     }
 
     public Person(String firstName, String lastName) {
-        this(firstName, lastName, "", "", "", "", "");
+        this(firstName, lastName, "", "", "", "");
     }
 
-    public Person(String firstName, String lastName, String street, String city, String postalCode, String birthdate, String phoneNumber) {
+    public Person(String firstName, String lastName, String street, String city, String postalCode, String phoneNumber) {
+        this(firstName, lastName, street, city, "", postalCode, phoneNumber);
+    }
+
+    public Person(String firstName, String lastName, String street, String city, String birthdate, String postalCode, String phoneNumber) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;
         this.city = city;
-        this.postalCode = postalCode;
         this.birthdate = birthdate;
+        this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
     }
 
